@@ -1,11 +1,4 @@
-
-
-<div class="modal fade" id="app" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-      @extends('layouts.master')
+ @extends('layouts.master')
 @section('content')
 	<div class="container" id="app">
 		<form method="POST" action="/equipments/{{ $equipment->id }}/update">
@@ -16,11 +9,14 @@
 		    <input type="text" class="form-control" name='name' value='{{ $equipment->name }}'>
 
 		    <br>
+		    <input type="text" class="form-control" name='quantity' v-model='equipment.quantity' value='{{$equipment->serial_no}}'>
+		    <br>
 		    <select class="custom-select custom-select-lg mb-3" name ="category"> 
 		    	@foreach ($equipments_category as $equipments_category)
 		    	<option class="option"  value='{{ $equipments_category->name }} '>
 		    		{{ $equipments_category->name }}</option>
 		    	@endforeach
+		    
 		    </select>
 		    
 		  <br>
@@ -43,23 +39,9 @@
 			mounted() {
 				console.log(this.equipment)
 			},
-			computed:{
-				totalCost(){
-					return this.equipment.quantity*this.equipment.cost; 
-				}
-			}
-
 		})
 </script>
 @endsection
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
+ 
 
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm">Launch
-    Modal Contact Form</a>
-</div>
+ 
