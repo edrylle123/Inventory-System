@@ -11,17 +11,18 @@ class EquipmentsController extends Controller
     public function index()
     {
     	$equipments = Equipments::all();
-    	return view('equipments.index')->with('equipments', $equipments);
+        $equipments_category = EquipmentsCategory::all();
+    	return view('equipments.index', compact('equipments_category'))->with('equipments', $equipments);
     }
     public function create()
     {   
         $equipments = Equipments::all();
         $equipments_category = EquipmentsCategory::all();
-        return view('equipments.create', compact('equipments_category'));
+        return view('equipments.index', compact('equipments_category'))->with('equipments', $equipments);
     }
     public function edit(Equipments $equipment){
         $equipments_category = EquipmentsCategory::all();
-        return view('equipments.edit', compact('equipment','equipments_category'));
+       return view('equipments.index', compact('equipments_category'))->with('equipments', $equipments);
         //dd($teacher);
     }
     public function store()
